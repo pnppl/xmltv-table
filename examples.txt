@@ -1,0 +1,6 @@
+perfect:
+./xmltv-table.py -u "https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vRVyH19VdAbBiyLNKMWe35XD4vhsKOS7_0_jKIEHRUC37NqfjmAXfOszRoBv3W6DYFtxJzN60ed7fyn/pubhtml" -w 5 -t 5 -o "swim.xmltv" -k "$ACCESS_TOKEN"
+completely wrong schedule data:
+./xmltv-table.py -u "https://docs.google.com/spreadsheets/d/1x-A7pf4HXB0PN8bk9FDLS3XdTh-U2unp_h28P6hpY_Q/htmlview" -n "RetroBlast" -s "https://retroblast.tv/" -c "rb" -k "$ACCESS_TOKEN"
+needs stops. might be slightly off (unreliable stream):
+./xmltv-table.py -u "https://funcube.space/schedule" -n "fun.cube" -s "https://funcube.space/" -c "cube" -t 8 -w 5 -k "$ACCESS_TOKEN"
