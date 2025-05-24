@@ -17,8 +17,8 @@ parser.add_argument("-o", "--outfile", type=str, help="where to write results")
 parser.add_argument("-k", "--key", type=str, help="TMDB API key")
 args = parser.parse_args()
 headers = {
-		"accept": "application/json",
-		"Authorization": f"Bearer {args.key}" 
+	"accept": "application/json",
+	"Authorization": f"Bearer {args.key}" 
 }
 if args.outfile == None:
 	args.outfile = args.site_name + '-schedule.xmltv'
@@ -64,7 +64,7 @@ def tmdb(title):
 			response = request(url)
 			if response.json()['total_results'] == 0:
 				return None
-		result =	response.json()['results'][0]
+		result = response.json()['results'][0]
 		tmdb_cache[title] = result
 		return result
 
@@ -79,7 +79,7 @@ def time_str_parse(time):
 				return datetime.strptime(time, "%I:%M")
 			except:
 				print("time_conv start fail")
-				exit(1)	
+				exit(1)
 
 # in: time range in local time as string, date in UTC
 # out: beginning and end datetimes in UTC as tuple; stop is start+30 if unspecified
@@ -95,7 +95,7 @@ def time_conv(time_range, date):
 		stop = date.combine(date.date(), stop.time()) + utc
 		return start, stop
 
-# in: [time_local, title], date
+# in: [time_local, title, {meta}], date
 # out: none -- writes
 def programme(slot, date):
 	start, stop = time_conv(slot[0], date)
@@ -192,7 +192,7 @@ fileout.write(f"""<?xml version="1.0" encoding="UTF-8"?>
  </channel>""")
 for i in range(args.weeks * 7):
 	weekday = (now_day + i) % 7
-	date = now + timedelta(days=i)	
+	date = now + timedelta(days=i)
 	for slot in week[weekday]:
 		programme(slot, date)
 fileout.write('\n</tv>')
