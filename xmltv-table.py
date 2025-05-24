@@ -78,7 +78,7 @@ def time_str_parse(time):
 			try:
 				return datetime.strptime(time, "%I:%M")
 			except:
-				print("time_conv start fail")
+				print("time parse fail")
 				exit(1)
 
 # in: time range in local time as string, date in UTC
@@ -101,8 +101,8 @@ def programme(slot, date):
 	start, stop = time_conv(slot[0], date)
 	fmt = "%Y%m%d%H%M%S"
 	fileout.write(f'\n <programme start="{ start.strftime(fmt) } +0000"')
-	if stop != None:
-		fileout.write(f' stop="{ stop.strftime(fmt) } +0000"')
+#	if stop != None:
+#		fileout.write(f' stop="{ stop.strftime(fmt) } +0000"')
 	fileout.write(f""" channel="{ args.channel }">
   <title>{ slot[1] }</title>""")
 	meta = slot[2]
@@ -149,6 +149,7 @@ def shell_init():
 	except:
 		print("couldn't use fucking grep")
 		exit(1)
+
 
 shell_init()
 tmdb_init()
